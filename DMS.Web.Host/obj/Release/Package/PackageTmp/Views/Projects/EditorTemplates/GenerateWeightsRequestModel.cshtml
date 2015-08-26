@@ -1,0 +1,9 @@
+﻿@model DMS.Web.Host.Models.GenerateWeightsRequestModel
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Alfa)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Alfa)
+    @Html.ValidationMessageFor(model => model.Alfa)
+</div>

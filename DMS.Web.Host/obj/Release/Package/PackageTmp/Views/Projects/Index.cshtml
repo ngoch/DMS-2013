@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ProjectTableRowModel>
+
+<h2>@ViewTitles.ProjectList</h2>
+<div class="actions-toolbar">
+    @Html.ActionLink(ApplicationStrings.AddProject, MVC.Projects.Add())
+</div>
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                @ApplicationStrings.ProjectName
+            </th>
+            <th>
+                @ApplicationStrings.Assessments
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @Html.DisplayFor(model => item)
+        }
+    </tbody>
+</table>

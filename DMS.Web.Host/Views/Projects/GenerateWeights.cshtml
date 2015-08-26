@@ -1,0 +1,81 @@
+﻿@model GenerateWeightsRequestModel
+@{
+    Layout = null;
+}
+
+@Model.Method
+@using (Ajax.BeginForm(MVC.Projects.GenerateWeights(Model.Id, Model.Method), new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = Model.Method.ToString() }))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="@ApplicationStrings.Generate" />
+    <br />
+    if (Model.ExistingResult != null)
+    {
+        var firstAlternativeFactors = Model.ExistingResult.GetFirstAlternativeFactors();
+    <table class="generated-weight list grid matrix">
+        <tr>
+            <td class="center"><strong>@Html.DisplayFor(model => model.ExistingResult.Alfa)</strong>
+            </td>
+            @foreach (var item in Model.ExistingResult.Project.Factors.OrderBy(x => x.FactorId))
+            {
+                <td>
+                    @item.FactorName
+                </td>
+            }
+        </tr>
+        @if (Model.ExistingResult.Items.First().Rating != null)
+        {
+            <tr>
+                <td>რეიტინგები
+                </td>
+                @foreach (var item in firstAlternativeFactors)
+                {
+                    <td>
+                        @Html.DisplayFor(model => item.Rating)
+                    </td>
+                }
+            </tr>
+        }
+        @if (Model.ExistingResult.Items.First().Possibility != null)
+        {
+            <tr>
+                <td>შესაძლებლობები
+                </td>
+                @foreach (var item in firstAlternativeFactors)
+                {
+                    <td>
+                        @Html.DisplayFor(model => item.Possibility)
+                    </td>
+                }
+            </tr>
+        }
+        @if (Model.ExistingResult.Items.First().Probability != null)
+        {
+            <tr>
+                <td>ალბათობები
+                </td>
+                @foreach (var item in firstAlternativeFactors)
+                {
+                    <td>
+                        @Html.DisplayFor(model => item.Probability)
+                    </td>
+                }
+            </tr>
+        }
+        @foreach (var item in Model.ExistingResult.Items.GroupBy(x => x.Alternative))
+        {
+            <tr>
+                <td>
+                    @item.Key.AlternativeName
+                </td>
+                @foreach (var factor in item.OrderBy(x => x.FactorId))
+                {
+                    <td>
+                        @Html.DisplayFor(model => factor.Weight)
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+    }
+}

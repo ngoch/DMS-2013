@@ -1,0 +1,5 @@
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\bin\Release\DMS.Infrastructure.dll
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\bin\Release\DMS.Infrastructure.pdb
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\obj\Release\DMS.Infrastructure.csprojResolveAssemblyReference.cache
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\obj\Release\DMS.Infrastructure.dll
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\obj\Release\DMS.Infrastructure.pdb

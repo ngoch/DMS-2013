@@ -1,0 +1,17 @@
+﻿@model DMS.Web.Host.Models.LogOnModel
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.UserName, ApplicationStrings.UserName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.UserName)
+    @Html.ValidationMessageFor(model => model.UserName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Password, ApplicationStrings.Password)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+</div>

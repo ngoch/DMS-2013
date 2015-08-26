@@ -1,0 +1,39 @@
+﻿@model ManualAssessmentViewModel
+@{
+    ViewBag.Title = ViewTitles.ManualAssessment;
+    var factorCount = Model.Items.Select(x => x.FactorId).Distinct().Count();
+    var alternativeCount = Model.Items.Select(x => x.AlternativeId).Distinct().Count();
+    var currentItem = 0;
+}
+
+<h2>@ViewTitles.ManualAssessment</h2>
+@using (Html.BeginForm())
+{
+    <table class="matrix">
+        <tr>
+            <td></td>
+            @foreach (var factor in Model.Items.OrderBy(x => x.FactorId).Select(x => x.FactorName).Distinct())
+            {
+                <td>@factor</td>    
+            }
+        </tr>
+        @for (int i = 0; i < alternativeCount; i++)
+        {
+            <tr>
+                <td>
+                    @Model.Items[i].AlternativeName
+                </td>
+                @for (int j = 0; j < factorCount; j++)
+                {
+                    <td>
+                        @Html.TextBoxFor(model => model.Items[currentItem].Points)
+                        @Html.HiddenFor(model => model.Items[currentItem].AlternativeId)
+                        @Html.HiddenFor(model => model.Items[currentItem].FactorId)
+                        @{currentItem++;}
+                    </td>
+                }
+            </tr>
+        }
+    </table>  
+    <input type="submit" value="@ApplicationStrings.Save" />
+}

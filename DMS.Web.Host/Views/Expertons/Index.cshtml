@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Index";
+    decimal[][] expertPoints = ViewBag.ExpertPoints;
+    Dictionary<decimal, decimal[]> levelPoints = ViewBag.LevelPoints;
+    List<decimal> finalResults = ViewBag.FinalResults;
+}
+
+<h2>Index</h2>
+<style>
+    table
+    {
+        border-collapse: collapse;
+    }
+
+        table td, th
+        {
+            text-align: center;
+            font-weight: normal;
+            border: 1px solid lightgray;
+            padding: 3px;
+        }
+</style>
+ExpertPoints
+<table>
+    <tr>
+        <th></th>
+        @for (int i = 0; i < expertPoints[0].Length; i++)
+        {
+            
+            <th>გადაწყვეტილება @(i + 1)
+            </th>
+        }
+    </tr>
+
+    @for (int i = 0; i < expertPoints.Length; i++)
+    {
+        <tr>
+
+            <td>ექსპერტი @(i + 1)
+            </td>
+            @for (int j = 0; j < expertPoints[i].Length; j++)
+            {
+                <td>
+                    @expertPoints[i][j]
+                </td>    
+            }
+
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<table>
+    <tr>
+        <th></th>
+        @for (int i = 0; i < levelPoints.ElementAt(0).Value.Length; i++)
+        {
+            
+            <th>გადაწყვეტილება @(i + 1)
+            </th>
+        }
+    </tr>
+
+    @foreach (var item in levelPoints)
+    {
+        <tr>
+
+            <td>დონე @(item.Key)
+            </td>
+            @for (int j = 0; j < item.Value.Length; j++)
+            {
+                <td>
+                    @item.Value[j] / @expertPoints.Length
+                </td>    
+            }
+
+        </tr>
+    }
+
+</table>
+
+<br />
+<br />
+<br />
+
+<table>
+    <tr>
+        @for (int i = 0; i < levelPoints.ElementAt(0).Value.Length; i++)
+        {
+            
+            <th>გადაწყვეტილება @(i + 1)
+            </th>
+        }
+    </tr>
+    <tr>
+        @foreach (var item in finalResults)
+        {
+
+            <td>
+                @item
+            </td>
+
+        }
+    </tr>
+</table>

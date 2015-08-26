@@ -1,0 +1,212 @@
+﻿@model DMS.Domain.Project
+@{
+    ViewBag.Title = ViewTitles.ProjectDetails;
+    var FactorCount = Model.Factors.Count;
+}
+
+<h2>@Model.Name</h2>
+<div class="tabs">
+    <ul>
+        <li>
+            <a href="#general-info">@ApplicationStrings.GeneralInfo</a>
+        </li>
+        <li>
+            <a href="#expert-assessments">@ApplicationStrings.ExpertAssessments</a>
+        </li>
+        <li>
+            <a href="#final-assessments">@ApplicationStrings.FinalAssessment</a>
+        </li>
+        @if (Model.FinalAssessment != null)
+        {
+            <li>
+                <a href="#weight-generation">@ApplicationStrings.WeightGeneration</a>
+            </li>   
+        
+            <li>
+                <a href="#aggregation-tab">@ApplicationStrings.AggregationGeneration</a>
+            </li>   
+        }
+    </ul>
+    <div id="general-info">
+        <div>
+            <strong>@ApplicationStrings.Factors</strong>
+            <ul>
+                @foreach (var item in Model.Factors)
+                {
+                    <li>@item.FactorName</li>
+                }
+            </ul>
+        </div>
+        <div>
+            <strong>@ApplicationStrings.Alternatives</strong>
+            <ul>
+                @foreach (var item in Model.Alternatives)
+                {
+                    <li>@item.AlternativeName</li>
+                }
+            </ul>
+        </div>
+        <div>
+            <strong>@ApplicationStrings.Experts</strong>
+            <ul>
+                @foreach (var item in Model.Experts)
+                {
+                    <li>@item.Name</li>
+                }
+            </ul>
+        </div>
+        @*        <div>
+            <strong>@ApplicationStrings.QuestionCount - @Model.AssessmentQuestionCount</strong>
+            <ul>
+                @foreach (var item in Model.AssesmentQuestionGenerationItems)
+                {
+                    <li>@item.Alfa</li>
+                }
+            </ul>
+        </div>*@
+    </div>
+    <div id="expert-assessments">
+        @foreach (var assessment in Model.Assessments)
+        {
+            <div>
+                <strong>@assessment.Expert.Name</strong>
+                <table class="matrix">
+                    <tr>
+                        <td></td>
+                        @foreach (var Factor in Model.Factors)
+                        {
+                            <td>@Factor.FactorName</td>    
+                        }
+                    </tr>
+                    @foreach (var alternative in Model.Alternatives)
+                    {
+                        <tr>
+                            <td>@alternative.AlternativeName</td>
+                            @for (int i = 0; i < FactorCount; i++)
+                            {
+                                <td>
+                                    @{
+                                var item = assessment.Items.SingleOrDefault(assessmentItem => assessmentItem.AlternativeId == alternative.AlternativeId &&
+                                    assessmentItem.FactorId == Model.Factors[i].FactorId);
+                                    }
+                                    @item.Points
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </div>
+    <div id="final-assessments">
+
+        <table class="matrix">
+            <tr>
+                <td></td>
+                @foreach (var Factor in Model.Factors)
+                {
+                    <td>@Factor.FactorName</td>    
+                }
+            </tr>
+            @foreach (var alternative in Model.Alternatives)
+            {
+                <tr>
+                    <td>@alternative.AlternativeName</td>
+                    @for (int i = 0; i < FactorCount; i++)
+                    {
+                        <td>
+                            @if (Model.FinalAssessment != null)
+                            {
+                                var item = Model.FinalAssessment.Items.SingleOrDefault(assessmentItem => assessmentItem.AlternativeId == alternative.AlternativeId &&
+                                    assessmentItem.FactorId == Model.Factors[i].FactorId);
+                                @item.Points
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+    @if (Model.FinalAssessment != null)
+    {
+        <div id="weight-generation">
+            @Html.ActionLink(string.Format(ApplicationStrings.AlfaCoefficient, Model.PsychometricQuestionnairePoints), MVC.Projects.StartPsychometricQuestionnaire(Model.ProjectId))
+            <div id="@DMS.Domain.WeightGenerationMethod.Method1.ToString()" class="weight-generation-method">
+                @Html.Action(MVC.Projects.GenerateWeights(Model.ProjectId, DMS.Domain.WeightGenerationMethod.Method1))
+            </div>
+            <div id="@DMS.Domain.WeightGenerationMethod.Method2.ToString()" class="weight-generation-method">
+                @Html.Action(MVC.Projects.GenerateWeights(Model.ProjectId, DMS.Domain.WeightGenerationMethod.Method2))
+            </div>
+            <div id="@DMS.Domain.WeightGenerationMethod.Method3.ToString()" class="weight-generation-method">
+                @Html.Action(MVC.Projects.GenerateWeights(Model.ProjectId, DMS.Domain.WeightGenerationMethod.Method3))
+            </div>
+            <div id="@DMS.Domain.WeightGenerationMethod.Orness.ToString()" class="weight-generation-method">
+                @Html.Action(MVC.Projects.GenerateWeights(Model.ProjectId, DMS.Domain.WeightGenerationMethod.Orness))
+            </div>
+            <div id="@DMS.Domain.WeightGenerationMethod.Quantifier.ToString()" class="weight-generation-method">
+                @Html.Action(MVC.Projects.GenerateWeights(Model.ProjectId, DMS.Domain.WeightGenerationMethod.Quantifier))
+            </div>
+
+        </div>
+        <div id="aggregation-tab">
+            <table>
+                <tr>
+                    <td>
+                        <div id="aggregations">
+                            @using (Html.BeginForm(MVC.Projects.DoAggregation().AddRouteValue("id", Model.ProjectId)))
+                            {
+                                @Html.DropDownList("aggregationType", Enum.GetValues(typeof(DMS.Domain.AggregationType)).Cast<DMS.Domain.AggregationType>().Select(x => new SelectListItem() { Text = x.ToString(), Value = x.ToString() }))
+
+                                <input type="submit" value="@ApplicationStrings.Generate" />
+                            }
+                            <table class="matrix">
+                                @*                <thead>
+                    <tr>
+                        <th>აგრეგირების მეთოდი</th>
+                        <th>წონა</th>
+                        <th>შედეგი</th>
+                    </tr>
+                </thead>*@
+                                <tbody>
+                                    @foreach (var aggregation in Model.AggregationResults)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.ActionLink(aggregation.AggregationType.ToString(), MVC.Projects.AggregationDetails(Model.ProjectId, aggregation.AggregationResultId))
+                                            </td>
+                                            <td>
+                                                @if (aggregation.Weight != null)
+                                                {
+                                                    @aggregation.Weight.GenerationMethod
+                                                }
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => aggregation.Lambda)
+                                            </td>
+                                            <td>
+                                                @aggregation.GetAggregationText()
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                    <td id="best-solution-cell">
+                        <div id="best-solution" class="ui-widget-content">
+                            <span class="ui-widget-header">რანჟირება</span>
+                            <div class="content">
+                                <ol>
+                                    @foreach (var alternative in Model.GetRangedAlternatives())
+                                    {
+                                        <li>@alternative.Item1.AlternativeName (@alternative.Item2)</li>
+                                    }
+                                </ol>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>

@@ -1,0 +1,21 @@
+﻿@model PsychometricQuestionViewModel
+@using (Html.BeginForm())
+{
+    @Model.QuestionText
+    <ol style="list-style-type: none;">
+        @for (int i = 0; i < Model.AllAnswers.Count; i++)
+        {
+            var symtom = Model.AllAnswers[i];
+            var @checked = Model.SelectedAnswers.Any(chosen => chosen == symtom.PsychometricQuestionPossibleAnswerId);
+            <li>
+                <label>
+                    <input id="selectedAnswers" name="selectedAnswers" type="checkbox" value="@symtom.PsychometricQuestionPossibleAnswerId"
+                    @if (@checked)
+                    {
+              <text>checked="checked"</text>          
+                    }>&nbsp;&nbsp;@symtom.AnswerText</label>
+            </li>
+        }
+    </ol>    
+    <input type="submit" value="@ApplicationStrings.Next" />
+}

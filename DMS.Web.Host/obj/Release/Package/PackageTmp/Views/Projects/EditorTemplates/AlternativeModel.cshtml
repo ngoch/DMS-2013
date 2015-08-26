@@ -1,0 +1,6 @@
+﻿@model DMS.Web.Host.Models.AlternativeModel
+<div class="alternative-item collection-item">
+    @Html.EditorFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+    <div class="remove-alternative remove-collection-item"></div>
+</div>

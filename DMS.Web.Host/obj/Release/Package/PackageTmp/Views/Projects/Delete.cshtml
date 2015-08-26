@@ -1,0 +1,13 @@
+﻿@model string
+@{
+    ViewBag.Title = ViewTitles.DeleteProject;
+}
+@using (Html.BeginForm())
+{
+    <h2>დარწმუნებული ხართ რომ გსურთ წაშალოთ პროექტი "@Model"?</h2>    
+    <div class="form-commands">
+        <input type="submit" value="@ApplicationStrings.Confirm" />
+        @Html.ActionLink(ApplicationStrings.Cancel, MVC.Projects.Index(), new { @class = "button" })
+    </div>
+}
+

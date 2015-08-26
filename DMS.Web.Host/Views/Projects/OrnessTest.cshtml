@@ -1,0 +1,32 @@
+﻿@model IList<double>
+@{
+    ViewBag.Title = "OrnessTest";
+}
+
+<h2>OrnessTest</h2>
+@using (Html.BeginForm())
+{
+    <div class="editor-label">
+        @Html.Label("a", "ალფა")
+    </div>
+    <div class="editor-field">
+        @Html.TextBox("a")
+    </div>
+    <div class="editor-label">
+        @Html.Label("n", "წონების ზომა")
+    </div>
+    <div class="editor-field">
+        @Html.TextBox("n")
+    </div>
+    <input type="submit" value="გენერაცია" />
+}
+@if (Model.Any())
+{
+    <span>შედეგი:</span> 
+    <ol>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <li>@Model[i]</li>
+        }
+    </ol>
+}

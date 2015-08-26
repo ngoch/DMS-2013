@@ -1,0 +1,39 @@
+﻿@model DMS.Web.Host.Models.AddProjectViewModel
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+<div id="edit-Alternatives" class="edit-collection">
+    @Html.LabelFor(model => model.Alternatives)
+    @Html.ValidationMessageFor(model => model.Alternatives)
+    <div id="Alternatives" class="collection" data-count="@Model.Alternatives.Count()">
+        <a id="add-alternative" class="add-item" href="@Url.Action(MVC.Projects.AddAlternative())">@ApplicationStrings.Add</a>
+        @Html.EditorFor(model => model.Alternatives)
+    </div>
+</div>
+<div id="edit-Factors" class="edit-collection">
+    @Html.LabelFor(model => model.Factors)
+    @Html.ValidationMessageFor(model => model.Factors)
+    <div id="Factors" class="collection" data-count="@Model.Factors.Count()">
+        <a id="add-Factor" class="add-item" href="@Url.Action(MVC.Projects.AddFactor())">@ApplicationStrings.Add</a>
+        @Html.EditorFor(model => model.Factors)
+    </div>
+</div>
+<div id="edit-users" class="edit-collection">
+    @Html.LabelFor(model => model.Users)
+    @Html.ValidationMessageFor(model => model.Users)
+    @Html.CheckBoxList(model => model.Users, Model.UsersSelectList)
+</div>
+@*
+<div class="editor-label">
+    @Html.LabelFor(model => model.AssessmentQuestionCount)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.AssessmentQuestionCount)
+    @Html.ValidationMessageFor(model => model.AssessmentQuestionCount)
+</div>
+*@

@@ -1,0 +1,349 @@
+﻿html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    font-size: 13px;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+.ui-widget
+{
+    font-family: inherit !important;
+    font-size: inherit !important; /*{fsDefault}*/
+}
+
+header, footer, nav, section
+{
+    display: block;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea
+{
+    min-height: 75px;
+}
+
+.editor-label
+{
+    font-weight: bold;
+}
+
+.editor-field
+{
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #c00;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #c00!important;
+    background-color: #fee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #c00;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.collection-item .remove-collection-item
+{
+    display: none;
+    width: 16px;
+    height: 16px;
+    background-image: url('images/DeleteHS.png');
+}
+
+.collection-item:hover .remove-collection-item
+{
+    display: inline-block;
+    cursor: pointer;
+}
+
+input[type=text], select, textarea, input[type=password]
+{
+    padding: 3px;
+    border: 1px solid lightgray;
+    width: 300px;
+}
+
+#edit-users ul
+{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 15px;
+}
+
+.form-commands
+{
+    margin-top: 5px;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+    table td
+    {
+        padding: 10px;
+    }
+
+    table.grid
+    {
+        width: 100%;
+    }
+
+        table.grid td
+        {
+            border-top-color: #d1d1d1;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-bottom-color: #d1d1d1;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            vertical-align: top;
+        }
+
+    table th
+    {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+    table.grid tbody tr:hover, table tr.selected
+    {
+        background-color: #f2f2f2;
+    }
+
+.actions-toolbar
+{
+    margin-bottom: 15px;
+}
+
+table a, table a:visited
+{
+    color: #07c;
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+
+.edit-collection
+{
+    margin: 15px 0;
+}
+
+    .edit-collection > label
+    {
+        font-weight: bold;
+    }
+
+table.matrix td
+{
+    border: 1px solid #d1d1d1;
+}
+
+#expert-assessments > div
+{
+    margin: 15px 0;
+}
+
+#header
+{
+    background: url('images/header_bg.png') repeat-x;
+    height: 58px;
+    padding: 10px;
+    border-bottom: 1px solid #4297D7;
+}
+
+    #header #logo
+    {
+        margin-right: 10px;
+        float: left;
+        width: 35px;
+    }
+
+#content
+{
+    padding: 15px;
+}
+
+a#logoff
+{
+    float: right;
+}
+
+h2
+{
+    padding-top: 0;
+    margin-top: 0;
+}
+
+#logon
+{
+    width: 420px;
+    margin: 0 auto;
+    padding: 24px;
+    margin-top: 200px;
+}
+
+    #logon h2
+    {
+        color: #07c;
+        font-size: 30px;
+    }
+
+    #logon .ui-button
+    {
+        margin-top: 15px;
+    }
+
+    #logon form
+    {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+table.list.grid.matrix
+{
+    width: auto !important;
+}
+
+div.weight-generation-method
+{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid lightgray;
+    width: auto;
+}
+
+.center
+{
+    text-align: center;
+}
+
+table.generated-weight
+{
+    margin-top: 15px;
+}
+
+#assessment-details.actions-toolbar a, #assessment-details.actions-toolbar form
+{
+    display: inline-block;
+}
+
+#authInfo
+{
+    text-align: right;
+    margin-right: 10px;
+}
+
+#main_menu
+{
+    margin-top: 27px;
+}
+
+    #main_menu a.ui-state-active
+    {
+        background: white;
+        font-weight: bold;
+        border-bottom: 1px solid white;
+        color: #155688 !important;
+        text-shadow: 0 1px #F5F8F9;
+    }
+
+    #main_menu a
+    {
+        padding: 5px 15px;
+        text-decoration: none;
+        font-weight: normal;
+        text-shadow: 0px 1px white;
+        color: Black;
+        border: 1px solid #4297D7;
+        border-bottom: none;
+    }
+
+*
+{
+    outline: none;
+}
+
+#best-solution-cell
+{
+    vertical-align: top;
+}
+
+#best-solution
+{
+}
+
+    #best-solution span
+    {
+        text-align: center;
+        display: block;
+    }
+
+    #best-solution ol
+    {
+        padding: 0;
+        line-height: 30px;
+    }
+
+        #best-solution ol li:first-child
+        {
+            font-weight: bold;
+        }
+
+    #best-solution .content
+    {
+        padding: 0 40px;
+    }
+
+#authInfo a, #authInfo a:visited
+{
+    color: #07c;
+}

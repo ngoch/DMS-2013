@@ -1,0 +1,54 @@
+﻿@model AssessmentDetailsViewModel
+
+@{
+    ViewBag.Title = ViewTitles.AssessmentDetails;
+
+    var FactorCount = Model.Project.Factors.Count;
+}
+
+<h2>@Model.Project.Name
+</h2>
+<div id="assessment-details" class="actions-toolbar">
+    @if (!(Model.Confirmed))
+    {
+        @Html.ActionLink(ApplicationStrings.ManualAssessment, MVC.Assessments.ManualAssessment(Model.ProjectId))
+        @Html.ActionLink(ApplicationStrings.TestAssessment, MVC.Assessments.TestAssessment(Model.ProjectId))
+    }
+    @if (Model.HasAssessment() && !Model.Confirmed)
+    {
+        using (Html.BeginForm(MVC.Assessments.ConfirmAssessment(Model.ProjectId)))
+        {
+        <input type="submit" value="@ApplicationStrings.Confirm"/>
+        }
+    }
+</div>
+<table class="matrix">
+    <tr>
+        <td></td>
+        @foreach (var Factor in Model.Project.Factors)
+        {
+            <td>@Factor.FactorName</td>    
+        }
+    </tr>
+    @foreach (var alternative in Model.Project.Alternatives)
+    {
+        <tr>
+            <td>@alternative.AlternativeName</td>
+            @for (int i = 0; i < FactorCount; i++)
+            {
+                <td>
+                    @{
+                var item = Model.Items.SingleOrDefault(assessmentItem => assessmentItem.AlternativeId == alternative.AlternativeId &&
+                    assessmentItem.FactorId == Model.Project.Factors[i].FactorId);
+                if (item == null)
+                {
+                    continue;
+                }
+                    }
+
+                    @item.Points
+                </td>
+            }
+        </tr>
+    }
+</table>

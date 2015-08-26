@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @{
+        object projectAttributes = null;
+        object assessmentAttributes = null;
+        if (ViewContext.RequestContext.RouteData.Values["controller"].Equals(MVC.Projects.Name))
+        {
+            projectAttributes = new { @class = "ui-state-active" };
+        }
+        else
+        {
+            assessmentAttributes = new { @class = "ui-state-active" };
+        }
+    }
+</head>
+<body>
+    @*    <div id="header">
+        @Html.ActionLink(ApplicationStrings.Projects, MVC.Projects.Index()) <span class="separator">
+            |</span>
+        @Html.ActionLink(ApplicationStrings.Assessments, MVC.Assessments.Index())
+        <span class="separator">|</span>
+        @Html.ActionLink("OrnessTest", MVC.Projects.OrnessTest())
+        @Html.ActionLink("QuantifierTest", MVC.Projects.QuantifierTest())
+        <span class="separator">|</span>
+        @Html.ActionLink("ExpertonsTest", MVC.Expertons.Index())
+        @Html.ActionLink(ApplicationStrings.LogOff, MVC.Auth.LogOff(), new { id = "logoff" })
+    </div>*@
+    <div id="header">
+        <div style="float: left;">
+            <img id="logo" src="~/Content/images/logo.png">
+            <span style="font-size: 170%; color: #2E6E9E;">OB-IDSS</span>
+        </div>
+        <div id="authInfo">
+            <img src="~/Content/images/user.png" alt="">
+            @User.Identity.Name
+            | <a href="@Url.Action(MVC.Home.Help())">დახმარება</a>
+            | <a href="@Url.Action(MVC.Auth.LogOff())">გამოსვლა</a>
+        </div>
+        <div id="main_menu">
+            @Html.ActionLink(ApplicationStrings.Projects, MVC.Projects.Index(), projectAttributes)
+            @Html.ActionLink(ApplicationStrings.Assessments, MVC.Assessments.Index(), assessmentAttributes)
+        </div>
+    </div>
+    <div id="content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/site.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

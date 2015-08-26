@@ -1,0 +1,10 @@
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\bin\Debug\DMS.Infrastructure.dll
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\bin\Debug\DMS.Infrastructure.pdb
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\obj\Debug\DMS.Infrastructure.dll
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\obj\Debug\DMS.Infrastructure.pdb
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS.Infrastructure\obj\Debug\DMS.Infrastructure.csprojResolveAssemblyReference.cache
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS\DMS.Infrastructure\bin\Debug\DMS.Infrastructure.dll
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS\DMS.Infrastructure\bin\Debug\DMS.Infrastructure.pdb
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS\DMS.Infrastructure\obj\Debug\DMS.Infrastructure.dll
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS\DMS.Infrastructure\obj\Debug\DMS.Infrastructure.pdb
+C:\Users\a.varshanidze\Desktop\DMS\DMS\DMS\DMS.Infrastructure\obj\Debug\DMS.Infrastructure.csprojResolveAssemblyReference.cache

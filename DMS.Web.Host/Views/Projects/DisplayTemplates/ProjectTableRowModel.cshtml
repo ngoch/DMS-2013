@@ -1,0 +1,8 @@
+﻿@model ProjectTableRowModel
+<tr>
+    <td>@Html.ActionLink(Model.Name, MVC.Projects.Details(Model.ProjectId))</td>
+    <td>@Model.ConfirmedAssessments / @Model.AllAssessments</td>
+    <td>@Html.ActionLink(ApplicationStrings.Edit, MVC.Projects.Edit(Model.ProjectId)) | 
+        @Html.ActionLink(ApplicationStrings.Delete, MVC.Projects.Delete(Model.ProjectId)) 
+    </td>
+</tr>

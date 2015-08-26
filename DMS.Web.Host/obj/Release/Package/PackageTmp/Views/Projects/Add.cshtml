@@ -1,0 +1,15 @@
+﻿@model AddProjectViewModel
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.EditorForModel()
+    <div class="form-commands">
+        <input type="submit" value="@ApplicationStrings.Save" />
+        @Html.ActionLink(ApplicationStrings.Cancel, MVC.Projects.Index(), new { @class = "button" })
+    </div>
+}
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/edit-project.js"></script>
+}

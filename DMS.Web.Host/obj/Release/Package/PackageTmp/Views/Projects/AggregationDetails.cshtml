@@ -1,0 +1,31 @@
+﻿@model DMS.Domain.AggregationResult
+@{
+    ViewBag.Title = "AggregationDetails";
+}
+
+<h2>@Model.Project.Name (@Model.AggregationType
+    @if (Model.Weight != null)
+    {
+        @:,
+        @Html.DisplayFor(model => model.Weight.GenerationMethod)@:)
+    }
+    else
+    {
+        @:)
+    }
+    @Model.GetAggregationText()
+</h2>
+<table class="matrix">
+    @foreach (var aggregationResult in Model.Items.OrderBy(x => x.AlternativeId))
+    {
+        <tr>
+            <td>
+                @aggregationResult.Alternative.AlternativeName
+            </td>
+            <td>
+                @Html.DisplayFor(model => aggregationResult.Aggregation)
+            </td>
+        </tr>
+    }
+</table>
+
